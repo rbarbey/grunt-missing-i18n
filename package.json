@@ -1,0 +1,33 @@
+{
+  "name": "missing-i18n",
+  "description": "Find files with unlocalizaed UI strings.",
+  "version": "0.0.1",
+  "homepage": "https://github.com/rbarbey/missing-18n",
+  "author": {
+    "name": "Robert Barbey"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/rbarbey/missing-i18n.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rbarbey/missing-18n/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ],
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.0"
+  },
+  "keywords": [
+    "gruntplugin"
+  ],
+  "files": [
+    "tasks",
+  ]
+}
