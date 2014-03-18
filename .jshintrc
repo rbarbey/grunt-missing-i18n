@@ -9,5 +9,6 @@
   "undef": true,    // true: Require all non-global variables to be declared (prevents global leaks)
   "boss": true,     // true: Tolerate assignments where comparisons would be expected
   "eqnull": true,   // true: Tolerate use of `== null`
+  "loopfunc": true, // true: tolerate functions in a loop
   "node": true      // Node.js
 }
