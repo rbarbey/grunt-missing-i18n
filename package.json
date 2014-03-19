@@ -2,7 +2,7 @@
   "name": "grunt-missing-i18n",
   "description": "Find files with unlocalized UI strings.",
   "version": "0.0.3",
-  "homepage": "https://github.com/rbarbey/grunt-missing-18n",
+  "homepage": "https://github.com/rbarbey/grunt-missing-i18n",
   "author": {
     "name": "Robert Barbey"
   },
@@ -11,11 +11,12 @@
     "url": "git://github.com/rbarbey/grunt-missing-i18n.git"
   },
   "bugs": {
-    "url": "https://github.com/rbarbey/grunt-missing-18n/issues"
+    "url": "https://github.com/rbarbey/grunt-missing-i18n/issues"
   },
   "licenses": [
     {
-      "type": "MIT"
+      "type": "MIT",
+      "url": "https://raw.github.com/rbarbey/grunt-missing-i18n/master/LICENSE"
     }
   ],
   "engines": {
