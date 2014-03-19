@@ -30,19 +30,19 @@ exports.init = function (grunt) {
       }
 
       var result = [];
-      lines.forEach(function (line) {
+      lines.forEach(function (line, lineNum) {
         if (line.isBlank()) {
           return;
         }
-
-        result.push(line.trim());
+        
+        result[lineNum] = line.trim();
       });
 
       if (result.length > 0) {
         results[files[i]] = result;
       }
-    }
 
+    }
     done(results);
   };
 

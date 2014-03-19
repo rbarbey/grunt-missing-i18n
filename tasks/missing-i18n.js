@@ -27,11 +27,11 @@ module.exports = function (grunt) {
 
       grunt.log.error('Found missing translations in ' + logNumFiles(numFiles));
       Object.each(results, function (result) {
-        grunt.log.error(result);
+        grunt.log.subhead(result);
 
         var missingTranslations = results[result];
-        missingTranslations.forEach(function (missing) {
-          grunt.log.writeln('\t' + missing);
+        missingTranslations.forEach(function (missing, index) {
+          grunt.log.writeln('[L' + index + ']: ' + missing);
         });
       });
 
