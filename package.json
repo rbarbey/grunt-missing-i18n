@@ -1,7 +1,7 @@
 {
   "name": "grunt-missing-i18n",
   "description": "Find files with unlocalized UI strings.",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "homepage": "https://github.com/rbarbey/grunt-missing-18n",
   "author": {
     "name": "Robert Barbey"
