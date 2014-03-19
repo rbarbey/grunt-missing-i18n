@@ -20,29 +20,29 @@ exports.init = function (grunt) {
       }
 
       var content = fs.readFileSync(files[i], 'utf8');
-      var stripped =
-        content.stripTags() // remove HTML tags,
-          .remove(/\{\{.*?\}\}/g); // remove Handlebars helpers
-
-      var lines = stripped.lines();
+      var lines = content.lines();
       if (lines.length === 0) {
         continue;
       }
 
       var result = [];
       lines.forEach(function (line, lineNum) {
-        if (line.isBlank()) {
+        var stripped =
+          line.stripTags() // remove HTML tags,
+            .remove(/\{\{.*?\}\}/g); // remove Handlebars helpers
+
+        if (stripped.isBlank()) {
           return;
         }
-        
-        result[lineNum] = line.trim();
+
+        result[lineNum+1] = stripped.trim();
       });
 
       if (result.length > 0) {
         results[files[i]] = result;
       }
-
     }
+
     done(results);
   };
 
