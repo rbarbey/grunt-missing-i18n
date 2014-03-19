@@ -31,7 +31,7 @@ module.exports = function (grunt) {
 
         var missingTranslations = results[result];
         missingTranslations.forEach(function (missing) {
-          console.log('\t' + missing);
+          grunt.log.writeln('"\t' + missing + '"');
         });
       });
 

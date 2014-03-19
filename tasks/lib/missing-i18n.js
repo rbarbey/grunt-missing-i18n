@@ -20,7 +20,9 @@ exports.init = function (grunt) {
       }
 
       var content = fs.readFileSync(files[i], 'utf8');
-      var stripped = content.stripTags();
+      var stripped =
+        content.stripTags() // remove HTML tags,
+          .remove(/\{\{.*?\}\}/g); // remove Handlebars helpers
 
       var lines = stripped.lines();
       if (lines.length === 0) {
@@ -33,11 +35,7 @@ exports.init = function (grunt) {
           return;
         }
 
-        if (line.has(/\{\{.*\}\}/)) {
-          return;
-        }
-
-        result.push(line);
+        result.push(line.trim());
       });
 
       if (result.length > 0) {

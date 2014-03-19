@@ -18,10 +18,11 @@ var fixtures = path.join(__dirname, 'fixtures');
 exports.missingI18n = {
   findsMissingTranslation: function(test) {
     test.expect(2);
+
     var files = [path.join(fixtures, 'missing-i18n.html')];
     missingI18n.findMissingI18n(files, function(result) {
       test.equal(Object.size(result), 1, 'Should report missing translations for 1 file');
-      test.equal(result[files[0]].length, 1, 'Should report 1 missing translation')
+      test.equal(result[files[0]].length, 2, 'Should report 1 missing translation')
       test.done();
     });
   },
@@ -42,5 +43,15 @@ exports.missingI18n = {
       test.ok(Object.isEmpty(results), 'Should ignore directories');
       test.done();
     })
+  },
+  reportedStringsAreTrimmed: function(test) {
+    test.expect(2);
+
+    var files = [path.join(fixtures, 'missing-i18n.html')];
+    missingI18n.findMissingI18n(files, function(result) {
+      test.equal(Object.size(result), 1, 'Should report 1 missing translation');
+      test.equal(result[files[0]][1], 'link', 'Found string should be trimmed');
+      test.done();
+    });
   }
 };
