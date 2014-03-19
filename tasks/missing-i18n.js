@@ -8,30 +8,32 @@
 'use strict';
 
 module.exports = function (grunt) {
-  var missingI18n = require('./lib/missing-i18n');
+  var missingI18n = require('./lib/missing-i18n').init(grunt);
 
   function logNumFiles(numFiles) {
     return numFiles + ' ' + grunt.util.pluralize(numFiles, 'file/files');
   }
 
-  grunt.registerMultiTask('missingI18n', 'Find files with unlocalized UI strings.', function() {
+  grunt.registerMultiTask('missingI18n', 'Find files with unlocalized UI strings.', function () {
     var done = this.async();
 
-    missingI18n.findMissingI18n(this.filesSrc, function(results) {
+    missingI18n.findMissingI18n(this.filesSrc, function (results) {
       var numFiles = Object.size(results);
-      if (numFiles > 0) {
-        grunt.log.error('Found missing translations in ' + logNumFiles(numFiles));
-        Object.each(results, function (result) {
-          grunt.log.error(result);
-
-          var missingTranslations = results[result];
-          missingTranslations.forEach(function (missing) {
-            console.log('\t' + missing);
-          });
-        });
-      } else {
+      if (numFiles <= 0) {
         grunt.log.ok('No missing translations in ' + logNumFiles);
+        done(true);
+        return;
       }
+
+      grunt.log.error('Found missing translations in ' + logNumFiles(numFiles));
+      Object.each(results, function (result) {
+        grunt.log.error(result);
+
+        var missingTranslations = results[result];
+        missingTranslations.forEach(function (missing) {
+          console.log('\t' + missing);
+        });
+      });
 
       done(numFiles);
     });
