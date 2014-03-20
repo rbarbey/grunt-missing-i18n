@@ -17,15 +17,18 @@ module.exports = function (grunt) {
   grunt.registerMultiTask('missingI18n', 'Find files with unlocalized UI strings.', function () {
     var done = this.async();
 
-    missingI18n.findMissingI18n(this.filesSrc, function (results) {
-      var numFiles = Object.size(results);
-      if (numFiles <= 0) {
-        grunt.log.ok('No missing translations in ' + logNumFiles);
+    var files = this.filesSrc || [];
+    grunt.verbose.writeln('Searching for unlocalized UI strings in: ' + files);
+
+    missingI18n.findMissingI18n(files, function (results) {
+      var numResults = Object.size(results);
+      if (numResults <= 0) {
+        grunt.log.ok('You rule, dude! No missing translations in ' + logNumFiles(files.length));
         done(true);
         return;
       }
 
-      grunt.log.error('Found missing translations in ' + logNumFiles(numFiles));
+      grunt.log.error('Found missing translations in ' + logNumFiles(files.length));
       Object.each(results, function (result) {
         grunt.log.subhead(result);
 
@@ -35,7 +38,7 @@ module.exports = function (grunt) {
         });
       });
 
-      done(numFiles);
+      done(numResults);
     });
   });
 };
